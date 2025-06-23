@@ -65,6 +65,8 @@ Data privacy is respected — no personally identifiable content is shared.
 
 Author
 Fateme Eslami
+
 AI MSc | University of Birmingham
+
 Gaze-aware AI Systems for Typing Interfaces
 
