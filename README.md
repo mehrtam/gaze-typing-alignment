@@ -1,72 +1,87 @@
-Gaze-Typing Alignment Analysis
-This project analyzes human gaze and typing behavior by aligning timestamped keystroke events with normalized gaze coordinates. The goal is to study gaze-key distance, typing attention, and spatial correlation during text entry.
+# Gaze-Typing Alignment & Fixation Analysis
 
-What's Inside
-Typing event extraction from JSON logs (textInput events)
+This project analyzes human gaze and typing behavior by aligning timestamped keystroke events with eye-tracking data. It focuses on **where and when users look** during typing, using **fixation detection**, **gaze–key distance**, and **time-aligned visualizations**.
 
-Gaze point filtering and normalization from Tobii-style .txt logs
+---
 
-Timestamp alignment using interpolation (±50ms tolerance)
+## 🎯 What's Inside
 
-Gaze–key distance computation
+- ✅ Typing event extraction from JSON logs (`textInput` events)
+- ✅ Gaze point filtering and normalization from Tobii-style `.txt` logs
+- ✅ **Fixation detection** using a sliding time window + standard deviation threshold
+- ✅ Timestamp alignment of gaze and typing via interpolation (±50ms tolerance)
+- ✅ **Fixation-to-keystroke alignment**: How early people look before pressing a key
+- ✅ Gaze–key **Euclidean distance** computation
+- ✅ Lag analysis (how many milliseconds gaze precedes typing)
+- ✅ Pearson **correlation analysis** between fixation positions and typed key positions
+- ✅ **Time-series plots** of gaze vs typed X/Y
+- ✅ **Fixation heatmaps** and keyboard overlays
 
-Correlation analysis between gaze and typing positions
+---
 
-Time-series visualization of X/Y alignment
+## 📦 Requirements
 
-Requirements
-Python ≥ 3.7
+- Python ≥ 3.7
 
-Libraries: pandas, numpy, matplotlib
-
-To install the dependencies:
-
-bash
-Copy
-Edit
-pip install pandas numpy matplotlib
-Input Files
-Place the following files in the root of your Colab or local project:
+### Install dependencies:
+```bash
+pip install pandas numpy matplotlib seaborn
+📁 Input Files
+Place the following files in your working directory (Colab or local):
 
 File	Description
-One participant .json file	Typing logs with textInput events
-One participant .txt file	Gaze logs (Tobii-style JSON per line format)
+P_XX.json	Typing logs with textInput events
+P_XX.txt	Gaze logs (Tobii-style JSON-per-line)
 
-Note: You may use the Eye of the Typer (EOTT) dataset as a substitute for the original files.
+👉 You may use the Eye of the Typer (EOTT) dataset as a sample source.
 
-Output & Metrics
-Plots of Typing vs. Gaze (X and Y over time)
+📈 Output & Metrics
+📊 Correlation coefficients (X and Y) between fixation and typed keys
 
-Gaze–key Euclidean distance
+⌛ Fixation lag (time between fixation and keypress)
 
-Correlation coefficients for X and Y alignment
+📏 Fixation-to-key distance (in pixels)
 
-Use Cases
+🧠 Fixation summary: duration, location, and frequency
+
+🔥 Heatmap of all fixations before typing
+
+⌨️ Keyboard overlay with fixation points and typed characters
+
+🧠 Use Cases
 Human-Computer Interaction (HCI)
 
-Assistive typing or AR/VR experiments
+Assistive typing interfaces (e.g., for disabilities)
 
-Cognitive load and attention studies
+AR/VR gaze-based input systems
 
-Eye-tracking behavior analysis
+Cognitive attention studies
 
-Sample Result
-Typing vs Gaze X alignment over time
+Predictive gaze-aware keyboards
 
-![image](https://github.com/user-attachments/assets/51e6a196-aae2-4cc3-b009-fcdc54ac2ecd)
+🖼️ Sample Visuals
+Typing vs Gaze X Alignment
 
+Fixation Heatmap
 
-Notes
-Gaze values are assumed to be normalized (0–1) and mapped to screen dimensions.
+Keyboard + Fixation Overlay
 
-Gaze filtering removes out-of-bound or corrupted data points.
+⚙️ Fixation Detection Parameters
+You can adjust:
 
-Data privacy is respected — no personally identifiable content is shared.
+window_duration: duration of sliding window (e.g., 200–300 ms)
 
-Author
+std_threshold: gaze position standard deviation threshold (e.g., 35 px)
+
+These impact how strict the fixation detection is.
+
+👤 Author
 Fateme Eslami
+MSc Artificial Intelligence, University of Birmingham
+Research focus: Gaze-aware AI Systems for Typing Interfaces
 
-AI MSc | University of Birmingham
+🔐 Notes
+Gaze data is assumed to be normalized (0–1) and mapped to screen resolution.
 
-Gaze-aware AI Systems for Typing Interfaces
+All gaze and keystroke timestamps are in milliseconds.
 
